@@ -1,0 +1,79 @@
+<TrustFrameworkPolicy
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://schemas.microsoft.com/online/cpim/schemas/2013/06"
+    PolicySchemaVersion="0.3.0.0" 
+    TenantId="your-valid-guid-here" <!-- Replace with a valid GUID -->
+    PolicyId="B2C_1A_Demo_SignUp_SignIn_AppAllowList"
+    PublicPolicyUri="http://micdrupal.onmicrosoft.com/B2C_1A_Demo_SignUp_SignIn_AppAllowList">
+
+    <!-- ... (rest of your policy remains unchanged) ... -->
+
+</TrustFrameworkPolicy>
+
+
+gsutil cp gs://stat-app-dev/index.html /F:\BACKUPS\GIT
+
+gsutil -m rsync -r gs://stat-app-dev/index.html/F:\BACKUPS\GIT/
+
+
+https://storage.googleapis.com/stat-app-dev/embed-script.js
+
+stat-app-dev/embed-script.js
+
+gsutil cp gs://stat-app-dev/embed-script.js F:\BACKUPS\GIT\
+
+Display name: Vikas Badoni
+Username: vikas.badoni@microgridtechsol.com
+Password: Vaj70671
+
+
+Hi Vikas,
+Greetings!!
+
+Please check the below details & change the current password.
+
+Display name: Vikas Badoni
+Username: vikas.badoni@microgridtechsol.com
+Current Password: Vaj70671
+
+Feel free to reach out if you need any further assistance.
+
+Azure tenant for drupal
+Creds
+vikas.badoni@microgridtechsol.com
+Vikas@123
+
+        <ClaimsProviders>
+            <ClaimsProvider>
+                <DisplayName>Token Issuer</DisplayName>
+                <TechnicalProfiles>
+                  <TechnicalProfile Id="JwtIssuer">
+                    <DisplayName>JWT Issuer</DisplayName>
+                    <Protocol Name="None" />
+                    <OutputTokenFormat>JWT</OutputTokenFormat>
+                    <Metadata>
+                      <Item Key="client_id">{service:te}</Item>
+                      <Item Key="issuer_refresh_token_user_identity_claim_type">objectId</Item>
+                      <Item Key="SendTokenResponseBodyWithJsonNumbers">true</Item>
+                    </Metadata>
+                    <CryptographicKeys>
+                      <Key Id="issuer_secret" StorageReferenceId="B2C_1A_TokenSigningKeyContainer" />
+                      <Key Id="issuer_refresh_token_key" StorageReferenceId="B2C_1A_TokenEncryptionKeyContainer" />
+                    </CryptographicKeys>
+                  </TechnicalProfile>
+                </TechnicalProfiles>
+              </ClaimsProvider>
+			  
+			  
+wflow-consoleweb/src/main/java/org/joget/mic/ccai/dao/InvoiceDetailsTRepository.java
+wflow-consoleweb/src/main/java/org/joget/mic/ccai/dao/LoanStatusTRepository.java
+wflow-consoleweb/src/main/java/org/joget/mic/model/InvoiceDetailsT.java
+wflow-consoleweb/src/main/java/org/joget/mic/snapmoney/controller/Currency.java
+wflow-consoleweb/src/main/java/org/joget/mic/snapmoney/controller/LoanStatusTController.java
+
+
+append score app
+append score data form
+append score data list
+append user view

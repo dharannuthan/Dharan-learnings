@@ -1,0 +1,40 @@
+name: Luz-ui
+on:
+  workflow_dispatch
+
+jobs:
+  build-project:
+    name: Build Project
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v1
+        with:
+          node-version: "16"
+
+      - name: Set up cloud SDK
+        uses: google-github-actions/setup-gcloud@v0
+        with:
+          project_id: ${{ secrets.EMILY_TEST_GCP_PROJECTID }}
+          service_account_key: ${{ secrets.EMILY_TEST_GCP_SECRET_KEY }}
+          export_default_credentials: true
+
+      - name: upload
+        uses: google-github-actions/download-cloud-storage@v0
+        with:
+          source: mg-migraine-dev/Test-delete/**
+          destination: mg-migraine-dev
+          parent: false
+
+      - name: Change Permissions
+        run: gsutil -m setmeta -h "Cache-Control:public, max-age=60" gs://mg-migraine-dev/**/*
+
+      - name: Run downloaded files
+        run: |
+          # Example: Run a Python script
+          python ./downloaded-files/my_script.py
+
+          # Example: Run a shell script
+          bash ./downloaded-files/my_script.sh
+
+          # Replace with the appropriate command to run your downloaded files

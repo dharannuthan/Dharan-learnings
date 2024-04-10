@@ -1,0 +1,68 @@
+How to increase XAMPP perfomance parameters
+
+
+C:\Users\dell\Desktop\xamp2\php\php.ini
+
+memory_limit=512M (default)--> need to increase as per our ram size   -----2gb
+post_max_size=40M (default)-->we can choose upto our max size 10 M to 50 M   ----------100 M
+upload_max_filesize=40M (default)-->we can choose upto our max size 2 M to 50 M   ------100 M
+
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+
+C:\Users\dell\Desktop\xamp2\mysql\bin\my.ini
+
+
+#----------------------------------------------------
+#          !!!! InnoDB Buffer Config !!!!
+#----------------------------------------------------
+
+innodb-buffer-pool-size = 512 -->need to increase as per our ram size  512M to 1GB ------------1gb
+innodb-additional-mem-pool-size = 200M -----500 M
+innodb-log-files-in-group = 2
+innodb-log-buffer-size = 10M    --100 M
+innodb-file-per-table = 1
+innodb_lock_wait_timeout = 180
+innodb_thread_concurrency=8 -- added
+
+
+#----------------------------------------------------
+#          !!!! Query Cache Config !!!!
+#----------------------------------------------------
+
+query-cache-size = 524288000
+query-cache-limit = 5242880
+query-cache-type = 1
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Need to update in server.xml  ---C:\apache-tomcat-11\conf\server.xml
+
+<Connector port="8088" protocol="HTTP/1.1"
+           connectionTimeout="20000"
+           redirectPort="8443"
+           enableLookups="false"
+           compression="off"
+           maxConnections="8192"
+           maxThreads="1000"
+           tcpNoDelay="true"/>
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+tomcat upload parameters
+
+
+C:\apache-tomcat-11\webapps\manager\WEB-INF
+
+    <multipart-config>
+      <!-- 500MB max -->
+      <max-file-size>524288000</max-file-size>
+      <max-request-size>524288000</max-request-size>
+      <file-size-threshold>0</file-size-threshold>
+    </multipart-config>
+
+---------------------------------------------------------------------------------------------------------------------------------------------------

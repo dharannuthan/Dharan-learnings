@@ -1,0 +1,99 @@
+#!/usr/bin/env bash
+
+cd ${WORKSPACE}
+
+echo " PWD :"  ${WORKSPACE}
+
+echo " CURRENT USER :" whoami
+
+echo "Deleting the below directories :" $Deletion
+
+sudo rm -rf $Deletion
+
+echo "printing the files and directories under workspace directory :"
+
+ls -lrt
+
+DIR="node_modules"
+
+DEST="dist"
+
+if [ -d "$DIR" ]; then
+   
+   echo "'$DIR' found - Initializing the build, please wait ..."
+   echo "'$DIR' found - Initializing the build, please wait ..."
+   echo "'$DIR' found - Initializing the build, please wait ..."
+   
+else
+    echo "Warning: '$DIR' NOT found.Installing the '$DIR'"
+   
+    
+    cd /var/lib/jenkins/scripts/jenkins/MIC-CHATBOT_GILEAD
+
+	echo " BUILD EXECUTING SH FILE "
+
+	sudo sh build.sh
+
+	echo " BUILD EXECUTED SH FILE "  
+fi
+
+
+cd ${WORKSPACE}
+
+echo "Current Path is :"
+
+pwd
+
+echo " Changing the angular.json file "
+
+sed -i 's|"src/assets/css/mic-cb3-style.css",|"src/assets/css/style.css",|g' angular.json
+
+cat angular.json | grep style.css
+
+echo " Styles set to style.css "
+
+ng build --base-href / --output-path=dist/ --configuration=gilead-dev --stats-json
+
+if [ -d "$DEST" ]; then
+   
+	echo "'$DEST' found - Proceeding to the Deployment ..."
+   
+	cd dist
+    
+    echo "Listing all the objects in the bucket"
+    
+    gsutil ls gs://gilead-dev-frontend
+
+	echo "Removing all the objects in the bucket"
+    
+    echo "Listing all the objects in the bucket"
+   	
+	echo "Bucket need to Empty"
+    
+    echo "Moving all the dist objects into the bucket"
+
+	gsutil -m cp -r * gs://gilead-dev-frontend
+    
+    echo "Moved all the dist objects into the bucket"
+    
+    echo "FileRead Start"
+       
+    echo "FileRead Stop"
+    
+    echo "Listing all the objects in the bucket"
+    
+    gsutil ls gs://gilead-dev-frontend
+    
+    echo "Changing Permissions"
+    
+    gsutil -m setmeta -h "Cache-Control:public, max-age=60" gs://gilead-dev-frontend/**/*
+   
+else
+
+    echo "Warning: '$DEST' NOT found.COMPILATION AND BUILD ISSUE"
+    echo "Warning: '$DEST' NOT found.COMPILATION AND BUILD ISSUE"
+    echo "Warning: '$DEST' NOT found.COMPILATION AND BUILD ISSUE"
+   
+fi
+
+echo "EOF"

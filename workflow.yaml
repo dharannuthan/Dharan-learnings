@@ -1,0 +1,31 @@
+name: Stat App Dev MIC
+on:
+  - workflow_dispatch
+
+jobs:
+  build-project:
+    name: Build Project
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "16"
+      - run: npm install --force
+
+      - run: npm run build -- --deploy-url=/ --output-path=dist/ --base-href / --configuration=stat-app-dev --stats-json
+
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v0
+        with:
+          project_id: stat-app-dev-403807
+          service_account_key: ${{ secrets.STATAPP_DEV_GCP_SECRET_KEY }}
+          export_default_credentials: true
+      - name: Upload
+        uses: google-github-actions/upload-cloud-storage@v0
+        with:
+          path: ./dist
+          destination: stat-app-dev
+          parent: false
+      - name: Change Permissions
+        run: gsutil -m setmeta -h "Cache-Control:public, max-age=60" gs://stat-app-test/**/*

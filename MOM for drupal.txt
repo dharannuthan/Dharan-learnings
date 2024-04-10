@@ -1,0 +1,26 @@
+Policy document need to deliver them before execution
+Custom policy need to submit by microgrid to client 
+what the activites are done by microgrid need to mention in story point
+Azure creation part is to kept as completed in story point
+need to change client secret to client certificate
+Alignment on the userflow need to mentioned in policy document
+The flow is going through figma process (need to check in powerpoint)
+Need to ask about are we continue with one region or need to add any requirments
+need to share embed script code to HCL they will deploy from their side  
+
+
+
+1)Aligning userflow -story point need to add
+2)bit bucket or git hub need to add in repo places
+3)user must not be deleted will be inactive state
+4)Need to update dependencies
+5)code and policy not be change for any environment deployment changes once moved to Dev
+6)On boarding of IAM --> Pradeep
+7)Veeva CRM will be done HCL --> pradeep
+8)Drupal deployments done by HCL
+9)Need to update Go or No-Go for any Blockers
+10)Deploy code from bitbucket to test environment once moved to Dev
+11)No of story point need to be merge and update
+12)mention whether steps will re-use or any changes in code
+13)redirection to signup form need to edit 
+14) Need to submit by 28-Feb-2024 

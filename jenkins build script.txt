@@ -1,0 +1,164 @@
+#!/usr/bin/env bash
+
+cd "${WORKSPACE}"
+
+echo " . "
+echo " . "
+echo " . "
+echo " . "
+
+echo " PWD :"  ${WORKSPACE}
+
+echo "CURRENT USER :" $(whoami)
+
+echo " . "
+echo " . "
+echo " . "
+echo " . "
+
+#rm -rf node_modules dist package-lock.json .angular
+
+echo "Deleting the below directories :" $Deletion
+
+sudo rm -rf $Deletion
+
+echo " . "
+echo " . "
+echo " . "
+echo " . "
+
+echo "printing the files and directories under workspace directory :"
+
+ls -lrt
+
+#rm -rf dist
+
+DIR="node_modules"
+
+DEST="dist"
+
+if [ -d "$DIR" ]; then
+   
+   echo "'$DIR' found - Initializing the build, please wait ..."
+   echo "'$DIR' found - Initializing the build, please wait ..."
+   echo "'$DIR' found - Initializing the build, please wait ..."
+   
+else
+    echo "Warning: '$DIR' NOT found.Installing the '$DIR'"
+   
+    cd /var/lib/jenkins/scripts/jenkins/STATAPP-CHATBOT_DEV
+
+	echo " BUILD EXECUTING SH FILE "
+
+	sudo sh build.sh
+
+	echo " BUILD EXECUTED SH FILE "  
+fi
+
+echo " . "
+echo " . "
+echo " . "
+echo " . "
+
+cd ${WORKSPACE}
+
+echo "Current Path is :"
+
+pwd
+
+echo " Changing the angular.json file "
+
+sed -i 's|"src/assets/css/mic-cb3-style.css",|"src/assets/css/style.css",|g' angular.json
+
+cat angular.json | grep style.css
+
+echo " . "
+echo " . "
+echo " . "
+echo " . "
+
+echo " Styles set to style.css "
+
+ng build --base-href / --output-path=dist/ --configuration=stat-app-dev --stats-json
+
+
+
+if [ -d "$DEST" ]; then
+   
+	echo "'$DEST' found - Proceeding to the Deployment ..."
+   
+	cd dist
+
+	#cp -rvf assets/embed-script.js .
+	
+	#echo "embed-script modifying - Based on environment specific & Proceeding to the Bucket Deployment ..."
+	
+	#sed -i 's/migrainedev.micnxt.com/croatiadevcr.micnxt.com/g' embed-script.js
+    
+    #echo "renamed 1"
+    
+	#sed -i 's/sclerosisdev.micnxt.com/croatiadevcr.micnxt.com/g' embed-script.js
+    
+    #echo "renamed 2"
+    
+    #cat embed-script.js
+
+	#gsutil cp * gs://valeopharma-mic-frontend
+    
+    echo " . "
+	echo " . "
+	echo " . "
+	echo " . "
+
+    echo "Listing all the objects in the bucket"
+    
+    gsutil ls gs://stat-app-dev
+    
+    echo " . "
+	echo " . "
+	echo " . "
+	echo " . "
+
+
+	echo "Removing all the objects in the bucket"
+
+	#gsutil -m rm -a gs://valeopharma-mic-frontend/**
+    
+    echo "Listing all the objects in the bucket"
+    
+    #gsutil ls gs://valeopharma-mic-frontend
+	
+	echo "Bucket need to Empty"
+    
+    echo "Moving all the dist objects into the bucket"
+
+	gsutil -m cp -r * gs://stat-app-dev
+    
+    echo "Moved all the dist objects into the bucket"
+    
+    echo "FileRead Stop"
+    
+    echo " . "
+	echo " . "
+	echo " . "
+	echo " . "
+    
+    echo "Listing all the objects in the bucket"
+    
+    gsutil ls gs://stat-app-dev
+    
+    echo "Changing Permissions"
+    
+    gsutil -m setmeta -h "Cache-Control:public, max-age=60" gs://stat-app-dev/**/*
+   
+else
+
+    echo "Warning: '$DEST' NOT found.COMPILATION AND BUILD ISSUE"
+    echo "Warning: '$DEST' NOT found.COMPILATION AND BUILD ISSUE"
+    echo "Warning: '$DEST' NOT found.COMPILATION AND BUILD ISSUE"
+   
+fi
+
+echo "EOF"
+
+echo "DEBUG: Variable X = ${X}"

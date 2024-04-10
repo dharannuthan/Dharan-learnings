@@ -1,0 +1,17 @@
+explained sequence diagram of manual flow
+mention figma for sequence and URS as well
+h
+
+
+https://apps.novartis.com/vpn/index.html
+https://cloudpc.novartis.com/
+ 
+DODDIBA1
+ 
+Mcgi#2023
+ 
+124578 + mobile pass
+ 
+NANET
+ 
+https://cloudpc.novartis.com/

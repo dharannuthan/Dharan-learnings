@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# Update and install necessary packages
+sudo apt-get update
+sudo apt-get install -y curl
+
+# Install Node.js and NPM
+curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+sudo apt-get install -y nodejs
+
+# Install Angular CLI globally
+sudo npm install -g @angular/cli
+
+# Clone or copy your Angular project (replace the URL or local path accordingly)
+git clone https://github.com/yourusername/your-angular-project.git /opt/your-angular-project
+# Or copy your project if it's not in a git repository
+# cp -r /path/to/your/local/angular/project /opt/your-angular-project
+
+# Navigate to the project directory
+cd /opt/your-angular-project
+
+# Install project dependencies
+npm install
+
+# Build and serve the Angular application (adjust the command based on your project setup)
+ng build --prod
+npm start

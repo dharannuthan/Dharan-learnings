@@ -1,0 +1,45 @@
+sudo apt-get update
+sudo apt-get install openjdk-17-jdk
+java -version
+sudo apt-get update && sudo apt-get install wget
+sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 5BA31D57EF5975CA
+sudo apt-get update
+sudo apt-get install jenkins
+sudo systemctl start jenkins
+gcloud auth login
+(Enter the key)
+gcloud compute firewall-rules create jenkins-web --allow tcp:8080
+sudo nano /var/lib/jenkins/secrets/initialAdminPassword
+
+870041b7a5f9458ba12d8fe2342f743f
+c7c654ab983b437a922237fa6e909ebb
+
+https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=32555940559.apps.googleusercontent.com&redirect_uri=https%3A%2F%2Fsdk.cloud.google.com%2Fauthcode.html&scope=openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fappengine.admin+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fsqlservice.login+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcompute+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Faccounts.reauth&state=FPobjPLv6BOAmdxAueYwMBq5UDUCoT&prompt=consent&token_usage=remote&access_type=offline&code_challenge=mW_TJZT6h7IQIekrkQdmH9giRJCPCnxS-ZFaWXr6AGc&code_challenge_method=S256
+
+
+
+
+step1 -after installation of jenkins and git in server 
+step2 -need to create access token in developer setting of github and credentials in jenkins 
+
+
+Hi 
+
+Changes deployed in the Pre-Prod environment. Please test all the changes and let us know the working status. 
+
+stat-app-test-dot-stat-app-dev-403807.lm.r.appspot.com
+
+https://storage.googleapis.com/order_3agest/htmltoeml.html
+
+
+eu.artifacts.stat-app-dev-403807.appspot.com
+gcf-sources-141772319010-europe-central2
+gcf-sources-141772319010-us-central1
+gcf-v2-sources-141772319010-europe-southwest1
+gcf-v2-uploads-141772319010-europe-southwest1
+staging.stat-app-dev-403807.appspot.com
+stat-app-dev
+stat-app-dev-403807.appspot.com
+statapp-test
+us.artifacts.stat-app-dev-403807.appspot.com
